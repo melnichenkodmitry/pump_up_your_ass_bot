@@ -25,4 +25,4 @@ def get_settings(path: str):
     )
 
 
-settings = get_settings('config')
+settings = get_settings('.config')
