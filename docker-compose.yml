@@ -8,8 +8,8 @@ services:
     volumes:
       - .:/home/pump_up_your_ass
     environment:
-      TOKEN: 6489604944:AAG1Gfcc8BwlpqVJCLYAPqkYNGcfvD6AgmU
-      ADMIN_ID: 484818692
+      TOKEN: TOKEN
+      ADMIN_ID: ADMIN_ID
       DB_HOST: postgres_pump_up_your_ass
       DB_USERNAME: postgres
       DB_PASSWORD: password
