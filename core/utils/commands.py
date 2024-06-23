@@ -6,19 +6,27 @@ async def set_commands(bot: Bot):
     commands = [
         BotCommand(
             command='start',
-            description='Начало работы'
+            description='Зарегистрироваться'
         ),
         BotCommand(
             command='help',
             description='Помощь'
         ),
         BotCommand(
-            command='commands',
-            description='Список команд'
+            command='record',
+            description='Записать результат выполнения упражнений'
         ),
         BotCommand(
-            command='cancel',
-            description='Сбросить'
+            command='results',
+            description='Просмотреть результаты упражнений'
+        ),
+        BotCommand(
+            command='create_exercise',
+            description='Создать упражнение'
+        ),
+        BotCommand(
+            command='get_exercises',
+            description='Список всех упражнений'
         ),
         BotCommand(
             command='inline',

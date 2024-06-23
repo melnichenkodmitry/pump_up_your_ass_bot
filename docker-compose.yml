@@ -7,6 +7,14 @@ services:
       - 8010:8010
     volumes:
       - .:/home/pump_up_your_ass
+    environment:
+      TOKEN: 6489604944:AAG1Gfcc8BwlpqVJCLYAPqkYNGcfvD6AgmU
+      ADMIN_ID: 484818692
+      DB_HOST: postgres_pump_up_your_ass
+      DB_USERNAME: postgres
+      DB_PASSWORD: password
+      DB_NAME: postgres
+      DB_PORT: 5432
 networks:
   default:
     name: pump_up_your_ass_network
