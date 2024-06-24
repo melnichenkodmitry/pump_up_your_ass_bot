@@ -7,5 +7,5 @@ users = Table(
     Column('username', Text, unique=True),
     Column('first_name', Text),
     Column('last_name', Text),
-    Column('reg_date', DateTime)
+    Column('created_at', DateTime)
 )

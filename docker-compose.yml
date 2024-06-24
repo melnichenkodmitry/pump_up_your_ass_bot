@@ -9,8 +9,7 @@ services:
       - .:/home/pump_up_your_ass
     environment:
       TOKEN: TOKEN
-      ADMIN_ID: ADMIN_ID
-      DB_HOST: postgres_pump_up_your_ass
+      DB_HOST: postgres_puya
       DB_USERNAME: postgres
       DB_PASSWORD: password
       DB_NAME: postgres

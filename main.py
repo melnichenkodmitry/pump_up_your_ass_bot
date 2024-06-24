@@ -27,7 +27,8 @@ async def start_bot(bot: Bot):
 
 
 async def stop_bot(bot: Bot):
-    await bot.send_message(os.getenv('ADMIN_ID'), text='Бот остановлен!')
+    # await bot.send_message(os.getenv('ADMIN_ID'), text='Бот остановлен!')
+    pass
 
 
 async def start():

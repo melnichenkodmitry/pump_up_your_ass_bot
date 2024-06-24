@@ -1,5 +1,6 @@
 import logging
 
+import aiogram.exceptions
 import sqlalchemy.exc
 from aiogram import Bot
 from aiogram.fsm.context import FSMContext
@@ -46,11 +47,11 @@ async def exercise_name(message: Message, state: FSMContext):
 
 
 async def create_exercise(message: Message, state: FSMContext):
-    await state.update_data(exercise=message.text)
+    await state.update_data(exercise_name=message.text)
     data = await state.get_data()
-    exercise = data.get('exercise')
+    exercise = data.get('exercise_name')
     stmt = insert(exercises).values([{
-        'name': exercise
+        'exercise_name': exercise
     }])
     try:
         async with engine.connect() as connect:
@@ -74,7 +75,11 @@ async def get_exercises(message: Message, bot: Bot):
     result = ''
     for i, j in list(enumerate(exercises_list, 1)):
         result += f'{i}. {j}\n'
-    await message.answer(result)
+    try:
+        await message.answer(result)
+    except aiogram.exceptions.TelegramBadRequest:
+        await message.answer(f'Список упражнений отсутствует.'
+                             f'Для того, чтобы добавить упражнение введите команду /create_exercise')
 
 
 async def get_inline(message: Message, bot: Bot):

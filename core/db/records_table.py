@@ -9,5 +9,5 @@ records = Table(
     Column('repeats', Integer),
     Column('weight', Integer),
     Column('num_of_approaches', Integer),
-    Column('record_date', DateTime)
+    Column('created_at', DateTime)
 )
