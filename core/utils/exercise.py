@@ -2,4 +2,4 @@ from aiogram.fsm.state import StatesGroup, State
 
 
 class Exercise(StatesGroup):
-    exercise = State()
+    exercise_name = State()

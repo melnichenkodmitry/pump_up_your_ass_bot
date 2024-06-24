@@ -37,7 +37,7 @@ async def start():
     dp.message.register(registration, CommandStart())
     dp.message.register(show_help, Command(commands='help'))
     dp.message.register(exercise_name, Command(commands='create_exercise'))
-    dp.message.register(create_exercise, Exercise.exercise)
+    dp.message.register(create_exercise, Exercise.exercise_name)
     dp.message.register(get_exercises, Command(commands='get_exercises'))
     # dp.message.register(get_start, CommandStart())
     # dp.message.register(get_location, F.location)

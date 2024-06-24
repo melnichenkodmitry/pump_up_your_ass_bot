@@ -43,7 +43,7 @@ async def show_help(message: Message, bot: Bot):
 
 async def exercise_name(message: Message, state: FSMContext):
     await message.answer(f'Напишите название упражнения')
-    await state.set_state(Exercise.exercise)
+    await state.set_state(Exercise.exercise_name)
 
 
 async def create_exercise(message: Message, state: FSMContext):
@@ -71,7 +71,6 @@ async def get_exercises(message: Message, bot: Bot):
     exercises_list = []
     for i in exercises_list_db:
         exercises_list.append(i[1])
-    logging.info(list(enumerate(exercises_list)))
     result = ''
     for i, j in list(enumerate(exercises_list, 1)):
         result += f'{i}. {j}\n'
