@@ -13,11 +13,11 @@ async def set_commands(bot: Bot):
             description='Помощь'
         ),
         BotCommand(
-            command='record',
+            command='create_record',
             description='Записать результат выполнения упражнений'
         ),
         BotCommand(
-            command='results',
+            command='get_records',
             description='Просмотреть результаты упражнений'
         ),
         BotCommand(
@@ -28,10 +28,10 @@ async def set_commands(bot: Bot):
             command='get_exercises',
             description='Список всех упражнений'
         ),
-        BotCommand(
-            command='inline',
-            description='Показать инлайн клавиатуру'
-        )
+        # BotCommand(
+        #     command='inline',
+        #     description='Показать инлайн клавиатуру'
+        # )
     ]
 
     await bot.set_my_commands(commands=commands, scope=BotCommandScopeDefault())

@@ -1,4 +1,4 @@
-from sqlalchemy import Table, MetaData, Column, Integer, DateTime
+from sqlalchemy import Table, MetaData, Column, Integer, DateTime, Double
 
 records = Table(
     'records',
@@ -7,7 +7,7 @@ records = Table(
     Column('user_id', Integer),
     Column('exercise_id', Integer),
     Column('repeats', Integer),
-    Column('weight', Integer),
-    Column('num_of_approaches', Integer),
+    Column('weight', Double),
+    Column('approaches', Integer),
     Column('created_at', DateTime)
 )

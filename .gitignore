@@ -6,4 +6,4 @@ core/keyboards/__pycache__/
 core/utils/__pycache__/
 core/db/__pycache__/
 .env
-docker-compose.yml
+#docker-compose.yml
