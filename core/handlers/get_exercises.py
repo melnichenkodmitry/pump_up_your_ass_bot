@@ -7,9 +7,14 @@ from sqlalchemy import select
 
 from core.db.db_config import engine
 from core.db.exercises_table import exercises
+from core.utils.db import check_registration
 
 
 async def get_exercises(message: Message, bot: Bot):
+    reg_status = await check_registration(username=message.from_user.username)
+    if not reg_status:
+        return await message.answer('Вы не зарегистрированы\n'
+                                    'Пройдите регистрацию, используя команду /start')
     stmt = select(exercises).order_by(exercises.c.id)
     async with engine.connect() as connect:
         exercises_list_db = await connect.execute(statement=stmt)

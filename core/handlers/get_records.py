@@ -7,9 +7,14 @@ from core.db.db_config import engine
 from core.db.exercises_table import exercises
 from core.db.records_table import records
 from core.db.users_table import users
+from core.utils.db import check_registration
 
 
 async def get_records(message: Message, bot: Bot):
+    reg_status = await check_registration(username=message.from_user.username)
+    if not reg_status:
+        return await message.answer('Вы не зарегистрированы\n'
+                                    'Пройдите регистрацию, используя команду /start')
     stmt = select(exercises.c.exercise_name, exercises.c.inventory_name, records.c.repeats, records.c.weight,
                   records.c.approaches).join(users, users.c.id == records.c.user_id).join(exercises,
                   exercises.c.id == records.c.exercise_id).where(
@@ -30,4 +35,4 @@ async def get_records(message: Message, bot: Bot):
         await message.answer(result)
     except aiogram.exceptions.TelegramBadRequest:
         await message.answer('Записи упражнений отсутствуют\n'
-                             'Введите команду /record, чтобы добавить новую запись')
+                             'Введите команду /create_record, чтобы добавить новую запись')

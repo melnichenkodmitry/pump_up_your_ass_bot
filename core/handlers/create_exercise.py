@@ -5,17 +5,23 @@ from sqlalchemy import insert
 
 from core.db.db_config import engine
 from core.db.exercises_table import exercises
+from core.utils.db import check_registration
 from core.utils.exercise import Exercise
 
 
 async def ex_exercise_name(message: Message, state: FSMContext):
-    await message.answer('Введите название упражнения')
+    reg_status = await check_registration(username=message.from_user.username)
+    if not reg_status:
+        return await message.answer('Вы не зарегистрированы\n'
+                                    'Пройдите регистрацию, используя команду /start')
+
+    await message.answer('Введите наименование упражнения')
     await state.set_state(Exercise.exercise_name)
 
 
 async def inventory_name(message: Message, state: FSMContext):
     await state.update_data(exercise_name=message.text)
-    await message.answer('Введите название инвентаря')
+    await message.answer('Введите наименование инвентаря')
     await state.set_state(Exercise.inventory_name)
 
 

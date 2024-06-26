@@ -5,8 +5,8 @@ from aiogram.client.default import DefaultBotProperties
 from aiogram.enums import ParseMode
 import asyncio
 from core.handlers.start import registration
-from core.handlers.help import show_help
-from core.handlers.create_exercise import ex_exercise_name , inventory_name, create_exercise
+from core.handlers.help import show_help, default_handler
+from core.handlers.create_exercise import ex_exercise_name, inventory_name, create_exercise
 from core.handlers.create_record import rec_exercise_name, weight, repeats, approaches, create_record
 from core.handlers.get_exercises import get_exercises
 from core.handlers.get_records import get_records
@@ -54,6 +54,7 @@ async def start():
     dp.message.register(create_exercise, Exercise.inventory_name)
 
     dp.message.register(get_exercises, Command(commands='get_exercises'))
+    dp.message.register(default_handler)
     # dp.message.register(get_start, CommandStart())
     # dp.message.register(get_location, F.location)
     # dp.message.register(get_inline, Command(commands='inline'))
