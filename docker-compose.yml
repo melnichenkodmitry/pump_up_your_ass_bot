@@ -1,19 +1,22 @@
 version: "1.0"
 services:
   bot:
-    image: melnichenkodmitry/pump_up_your_ass
+    image: python:3.11-alpine
     container_name: pump_up_your_ass
+    user: root
     ports:
       - 8010:8010
     volumes:
-      - .:/home/pump_up_your_ass
+      - .:/pump_up_your_ass
+    working_dir: /pump_up_your_ass
     environment:
-      TOKEN: TOKEN
+      TOKEN: 6489604944:AAG1Gfcc8BwlpqVJCLYAPqkYNGcfvD6AgmU
       DB_HOST: postgres_puya
       DB_USERNAME: postgres
       DB_PASSWORD: password
       DB_NAME: postgres
       DB_PORT: 5432
+    command: sh -c "./packages.sh; python3 main.py"
 networks:
   default:
     name: pump_up_your_ass_network

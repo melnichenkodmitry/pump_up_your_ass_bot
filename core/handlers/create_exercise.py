@@ -3,7 +3,7 @@ from aiogram.fsm.context import FSMContext
 from aiogram.types import Message
 from sqlalchemy import insert
 
-from core.db.db_config import engine
+from core.db.db_config import engine_async
 from core.db.exercises_table import exercises
 from core.utils.db import check_registration
 from core.utils.exercise import Exercise
@@ -35,7 +35,7 @@ async def create_exercise(message: Message, state: FSMContext):
         'inventory_name': inventory
     }])
     try:
-        async with engine.connect() as connect:
+        async with engine_async.connect() as connect:
             await connect.execute(statement=stmt)
             await connect.commit()
     except sqlalchemy.exc.IntegrityError:

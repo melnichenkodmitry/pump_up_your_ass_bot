@@ -7,9 +7,10 @@ from aiogram.fsm.context import FSMContext
 from aiogram.types import Message
 from sqlalchemy import insert, select
 
-from core.db.db_config import engine
+from core.db.db_config import engine_async
 from core.db.records_table import records
 from core.db.users_table import users
+from core.keyboards.reply import get_exercises
 from core.utils.db import check_registration, check_exercise
 from core.utils.record import Record
 from core.db.exercises_table import exercises
@@ -94,7 +95,7 @@ async def create_record(message: Message, state: FSMContext):
         'approaches': int(approaches)
     }])
     try:
-        async with engine.connect() as connect:
+        async with engine_async.connect() as connect:
             await connect.execute(statement=stmt)
             await connect.commit()
     except sqlalchemy.exc.IntegrityError:

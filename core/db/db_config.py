@@ -1,5 +1,6 @@
 import os
 from sqlalchemy.ext.asyncio import create_async_engine
+from sqlalchemy import create_engine
 
 
 class Settings:
@@ -20,9 +21,18 @@ class Settings:
     def database_url_asyncpg(self):
         return f'postgresql+asyncpg://{self.DB_USERNAME}:{self.DB_PASSWORD}@{self.DB_HOST}:{self.DB_PORT}/{self.DB_NAME}'
 
+    @property
+    def database_url_psycopg(self):
+        return f'postgresql+psycopg2://{self.DB_USERNAME}:{self.DB_PASSWORD}@{self.DB_HOST}:{self.DB_PORT}/{self.DB_NAME}'
+
 
 settings = Settings()
-engine = create_async_engine(
+engine_async = create_async_engine(
     url=settings.database_url_asyncpg,
+    echo=False
+)
+
+engine_sync = create_engine(
+    url=settings.database_url_psycopg,
     echo=False
 )

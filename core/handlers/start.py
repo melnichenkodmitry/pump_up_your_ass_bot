@@ -3,7 +3,7 @@ from aiogram import Bot
 from aiogram.types import Message
 from sqlalchemy import insert
 
-from core.db.db_config import engine
+from core.db.db_config import engine_async
 from core.db.users_table import users
 from core.utils.db import check_registration, check_exercise
 
@@ -17,7 +17,7 @@ async def registration(message: Message, bot: Bot):
         'first_name': message.from_user.first_name,
         'last_name': message.from_user.last_name
     }])
-    async with engine.connect() as connect:
+    async with engine_async.connect() as connect:
         await connect.execute(statement=stmt)
         await connect.commit()
     await message.answer(f'Привет, {message.from_user.first_name}!\n'

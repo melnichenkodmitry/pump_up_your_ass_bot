@@ -7,7 +7,7 @@ from aiogram.fsm.context import FSMContext
 from aiogram.types import Message
 from sqlalchemy import insert, select, delete
 
-from core.db.db_config import engine
+from core.db.db_config import engine_async
 from core.db.exercises_table import exercises
 from core.db.records_table import records
 from core.db.users_table import users
