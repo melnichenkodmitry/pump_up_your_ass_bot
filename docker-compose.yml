@@ -1,7 +1,10 @@
 version: "1.0"
 services:
   bot:
-    image: python:3.11-alpine
+#    image: python:3.11-alpine
+    build:
+      context: .
+      dockerfile: Dockerfile
     container_name: pump_up_your_ass
     user: root
     ports:
@@ -16,7 +19,7 @@ services:
       DB_PASSWORD: password
       DB_NAME: postgres
       DB_PORT: 5432
-    command: sh -c "./packages.sh; python3 main.py"
+
 networks:
   default:
     name: pump_up_your_ass_network
